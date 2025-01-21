@@ -13,5 +13,5 @@ _start:
     call ft_write
 
     mov rax, 60 
-    xor rdi, rdi
+    mov rdi, 0
     syscall

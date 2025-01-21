@@ -4,8 +4,8 @@ global ft_write
 ft_write:
     mov rax, 0x1
     syscall
-    js error
+    js .error
     ret
-error:
+.error:
     mov rax, -1
     ret

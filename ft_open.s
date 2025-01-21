@@ -4,8 +4,8 @@ global ft_open
 ft_open:
     mov rax, 2
     syscall
-    js error
+    js .error
     ret
-error:
+.error:
     mov rax, -1
     ret

@@ -6,7 +6,7 @@
 #    By: mregrag <mregrag@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/19 23:08:09 by mregrag           #+#    #+#              #
-#    Updated: 2025/01/21 17:14:09 by mregrag          ###   ########.fr        #
+#    Updated: 2025/01/21 19:37:41 by mregrag          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = libfasm.a
 
-ASM_SRC = ft_write.s ft_strlen.s ft_open.s ft_read.s ft_isdigit.s
+ASM_SRC = ft_write.s ft_strlen.s ft_open.s ft_read.s ft_isdigit.s ft_strcmp.s
 C_SRC = main.c
 
 OBJ = $(ASM_SRC:.s=.o) $(C_SRC:.c=.o)
@@ -35,11 +35,15 @@ $(NAME): $(OBJ)
 %.o: %.s
 	$(AS) $(ASFLAGS) $< -o $@
 
-run:
-	$(CC) $(CFLAGS) main.c $(NAME) -o run && ./run
+run_c:
+	$(CC) $(CFLAGS) main.c $(NAME) -o run_c && ./run_c
+
+run_s:
+	$(AS) $(ASFLAGS) main.s -o main.o
+	$(CC) main.o $(NAME) -nostartfiles -o run_s && ./run_s
 
 clean:
-	rm -f $(OBJ) $(NAME) run
+	rm -f $(OBJ) $(NAME) run_s run_c
 
 fclean: clean
 
